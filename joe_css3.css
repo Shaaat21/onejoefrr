@@ -168,7 +168,7 @@ figcaption {
     color: oklab(57.116% 0.20846 0.07618);
     border: 0;
     outline: none;
-    background-image: url('../../black_menu_bar.png');
+    background-image: url('black_menu_bar.png');
     background-color: transparent;
     background-size: cover;
     background-position: center;
@@ -209,7 +209,7 @@ a {
 .item1::before {
     content: "";
     display: inline-block;
-    background-image: url("../../apple_music_black.png");
+    background-image: url("apple_music_black.png");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -245,7 +245,7 @@ a {
 .item2::before {
     content: "";
     display: inline-block;
-    background-image: url("../../black_ig_logo.png");
+    background-image: url("black_ig_logo.png");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -274,7 +274,7 @@ a {
 .item3::before {
     content: "";
     display: inline-block;
-    background-image: url("../../black_spofiy_logo.png");
+    background-image: url("black_spofiy_logo.png");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -303,7 +303,7 @@ a {
 .item4::before {
     content: "";
     display: inline-block;
-    background-image: url("../../SoundCloud_logo.png");
+    background-image: url("SoundCloud_logo.png");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -331,7 +331,7 @@ a {
 .item5::before {
     content: "";
     display: inline-block;
-    background-image: url("../../x_logo.png");
+    background-image: url("x_logo.png");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
