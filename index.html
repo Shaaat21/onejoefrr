@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="joe_css3.css">
+</head>
+
+<body>
+    <video autoplay muted loop playsinline class="bg-video">
+    <source src="ONEJXE MV_9.mp4" type="video/mp4">
+   </video>
+
+
+
+
+    <h1 class="title_name">onejxe</h1>
+    <div class="box_con">
+
+    <div class="item box-1">
+         <figure>
+            <a href="https://soundcloud.com/onejxe/sets/onejxe-cidepeace" target="_blank">
+            <img src="CIDEPEACE_FINAL_COVER.webp" class="joe_photo">
+            </a>
+            <figcaption>CIDEPEACE</figcaption>
+            
+         </figure>
+        
+    </div>
+    
+
+    <div class="item box-2">
+        <figure>
+            <a href="https://soundcloud.com/onejxe/onejxe-adam-eve" target="_blank">
+            <img src="../../adam_eve.jpg" class="joe_photo">
+            </a>
+            <figcaption>adam & eve</figcaption>
+            
+         </figure>
+    </div>
+
+    <div class="item box-3">
+        <figure>
+            <a href="https://soundcloud.com/onejxe/onejxe-topfloor" target="_blank">
+            <img src="../../bullet_joe.jpg" class="joe_photo">
+            </a>
+            <figcaption>X&P</figcaption>
+         </figure>
+    </div>
+    
+
+    <div class="item box-4">
+        <figure>
+            <a href="https://soundcloud.com/onejxe/onejxe-2518" target="_blank">
+            <img src="../../18_cover_joe.jpg" class="joe_photo">
+            </a>
+            <figcaption>25*18</figcaption>
+         </figure>
+    </div>
+
+    <div class="item box-5">
+        <figure>
+            <a href="https://soundcloud.com/onejxe/onejxe-ten" target="_blank">
+                <img src="../../black_jacket_joe.jpg" class="joe_photo">
+            </a>
+            <figcaption>ten</figcaption>
+
+
+        </figure>
+    </div>
+
+    <div class="item box-6">
+        <figure>
+            <a href="https://soundcloud.com/onejxe/onejxe-gwalla" target="_blank">
+                <img src="../../dread_joe.jpg" class="joe_photo">
+            </a>
+            <figcaption>gwalla</figcaption>
+
+
+        </figure>
+    </div>
+
+    <div class="item box-7">
+        <figure>
+            <a href="https://soundcloud.com/onejxe/onejxe-missu" target="_blank">
+                <img src="../../images.jpg" class="joe_photo">
+            </a>
+            <figcaption>missu</figcaption>
+
+
+        </figure>
+    </div>
+
+
+    <div class="item box-8">
+        <figure>
+            <a href="https://soundcloud.com/onejxe/sets/prod-onejxe" target="_blank">
+                <img src="../../Screenshot 2026-01-19 230744.png" class="joe_photo">
+            </a>
+            <figcaption>prod onejxe</figcaption>
+
+
+        </figure>
+    </div>
+
+
+
+    
+
+
+
+    </div>
+
+
+    <div class="dropdown">
+        <button type="button" class="drop_active" aria-expanded="false" aria-controls="dropdown-list">
+           
+        </button>
+        <ul class="dropdown_list" id="dropdown-list">
+            <li class="item1 list_item" id="items">
+                <a href="https://music.apple.com/us/artist/onejxe/1735662904" target="_blank">Apple</a>
+
+            </li>
+            <li class="item2 list_item" id="items">
+                
+                <a href="https://www.instagram.com/onejxe?igsh=MXBwYmpiYm5xNHN2bw%3D%3D&utm_source=qr" target="_blank">Insta</a></li>
+            <li class="item3 list_item" id="items"><a href="https://open.spotify.com/artist/23Wi5bciFk4phHf3dXqZly?si=E48nqeZqSC-8fpmq3lxrtQ&utm_medium=share&utm_source=linktree&nd=1&dlsi=2fbce0d444ab48c5" target="_blank">Spotify</a></li>
+            <li class="item4 list_item" id="items"><a href="https://soundcloud.com/onejxe" target="_blank">SC</a></li>
+            <li class="item5 list_item" id="items"><a href="https://x.com/cryinglustt" target="_blank">X</a></li>
+        </ul>
+    </div>
+
+    
+
+    <div class="con_link">
+        <a href="https://x.com/cryinglustt" target="_blank">
+            <img src="../../x_logo.png" class="x_link" >
+        </a>
+        <a href="https://www.pinterest.com/cryinglustt" target="_blank">
+            <img src="../../pentrest_blacklogo.png" class="pintrest_link">
+        </a>
+        <a href="https://soundcloud.com/onejxe/sets/onejxe-cidepeace?si=e636d155d9f64e6c982b66a2a8d42837&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">
+            <img src="../../SoundCloud_logo.png" class="sound_link">
+        </a>
+    
+    
+        
+
+
+    </div>
+
+
+
+
+    <script>
+    const dropdown = document.querySelector(".dropdown");
+    const toggleButton = dropdown ? dropdown.querySelector(".drop_active") : null;
+
+    if (dropdown && toggleButton) {
+        toggleButton.addEventListener("click", (event) => {
+            event.preventDefault();
+            const isOpen = dropdown.classList.toggle("open");
+            toggleButton.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        });
+
+        document.addEventListener("click", (event) => {
+            if (!dropdown.contains(event.target)) {
+                dropdown.classList.remove("open");
+                toggleButton.setAttribute("aria-expanded", "false");
+            }
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+                dropdown.classList.remove("open");
+                toggleButton.setAttribute("aria-expanded", "false");
+                toggleButton.focus();
+            }
+        });
+    }
+    </script>
+</body>
+</html>
+>
