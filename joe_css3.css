@@ -58,7 +58,6 @@ a {
 }
 
 
-
 .x_link,.pintrest_link,.sound_link {
     width: 5rem;
     height: 5rem;
@@ -90,7 +89,6 @@ figcaption {
 }
     
 
-
 .title_name{
     box-sizing: border-box;
    width: 100%;
@@ -105,7 +103,6 @@ figcaption {
     margin-top: 1rem;
 }
     
-
 
 .joe_photo {
     height: clamp(10rem, 22vw, 16rem);
@@ -166,7 +163,8 @@ figcaption {
     background: rgba(255,255,255,0.98);
     box-shadow: 0 6px 18px rgba(0,0,0,0.08);
     box-sizing: border-box;
-    white-space: normal;        /* allow wrapping inside items */
+    /* keep wrapping controlled at the item level so the container can size naturally */
+    white-space: normal;
     overflow: visible;
     padding-inline: 0.25rem;
 }
@@ -176,7 +174,7 @@ figcaption {
     display: block;
 }
 
-/* Items inside dropdown: allow wrapping, large tap targets, avoid overflow */
+/* Items inside dropdown: make each item full-width and prevent internal line breaks */
 .list_item,
 .dropdown-item,
 .item1, .item2, .item3, .item4, .item5 {
@@ -194,13 +192,26 @@ figcaption {
     display: flex;
     align-items: center;
     gap: 0.6rem;
-    white-space: normal;
-    word-break: break-word;     /* break long words/URLs to avoid overflow */
+    /* prevent line breaks inside the visible text and use ellipsis for overflow */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: normal;     /* do not break words across lines */
     box-sizing: border-box;
     background: transparent;
 }
 
-/* keep icons aligned but allow the text to wrap */
+/* Ensure anchor text inside each item also does not wrap and fills available space */
+.list_item a,
+.dropdown_list a {
+    display: block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* keep icons aligned but allow the text to remain on one line */
 .item1::before,
 .item2::before,
 .item3::before,
@@ -402,6 +413,7 @@ figcaption {
     
     width: auto;
 }
+
 
 .box-3 {
     grid-area: box-3;
