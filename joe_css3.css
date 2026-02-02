@@ -479,8 +479,8 @@ a {
     }
 
     .drop_active {
-        width: 3.25rem;
-        height: 3.25rem;
+        width: 2rem;
+        height: 2rem;
     }
 
     .con_link {
@@ -494,3 +494,4 @@ a {
         display: none;
     }
 }
+
