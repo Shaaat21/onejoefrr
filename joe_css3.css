@@ -40,7 +40,6 @@ body {
     "box-1 box-2 box-3 box-4"
     "box-5 box-6 box-7 box-8";
     
-
 }
 
 
@@ -53,7 +52,6 @@ body {
     padding: 1em;
     justify-content: center;
     align-content: end;
-
 }
 
 
@@ -65,16 +63,8 @@ body {
 }
 
 
-
-
-
 .box-1 {
     grid-area: box-1;
-    
-
-    
-   
-   
 }
 
 figure{
@@ -82,10 +72,8 @@ figure{
     height: 10rem;
     text-align: center;
     place-self: center;
-    
-    
 }
-
+    
 figcaption {
     text-align: center;
     margin-top: 1rem;
@@ -96,12 +84,8 @@ figcaption {
     color: oklab(57.116% 0.20846 0.07618);
     border-top: 1px solid rgb(0, 0, 0);
     border-bottom: 1px solid rgb(0, 0, 0);
-
-    
-    
-    
-    
 }
+    
 
 
 .title_name{
@@ -116,10 +100,8 @@ figcaption {
     margin: 0;
     letter-spacing: clamp(0.4rem, 2vw, 4rem);
     margin-top: 1rem;
-
-   
-    
 }
+    
 
 
 .joe_photo {
@@ -129,40 +111,22 @@ figcaption {
     place-self: center;
     display: block;
     box-shadow: 0 0 30px 8px oklab(5757.116% 0.20846 0.07618);
-    
-    
 }
-
+    
+/* --------- DROPDOWN (improved responsive behavior) --------- */
 .dropdown {
     border: 0;
-    position: fixed;
+    position: fixed;           /* keep toggle fixed in the viewport */
     top: 1rem;
     left: 1rem;
-    z-index: 2;
+    z-index: 9999;             /* high so it sits above other UI */
     margin: 0;
     padding: 0;
     display: inline-block;
-    
 }
 
-.list_item {
-    
-    border: 0;
-    height: auto;
-    width: auto;
-    font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
-    color: oklab(57.116% 0.20846 0.07618);
-    border-bottom: 0.2rem solid black;
-    z-index: 2;
-    padding: 1em;
-    
-    cursor: pointer;
-    text-align: center;
-    letter-spacing: clamp(0.3rem, 1.5vw, 1rem);
-}
-
+/* toggle control (hamburger/menu button) */
 .drop_active {
-
     width: 5rem;
     height: 5rem;
     color: oklab(57.116% 0.20846 0.07618);
@@ -173,20 +137,125 @@ figcaption {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    
     position: relative;
-    z-index: 2;
+    z-index: 10000;            /* above the menu so click/tap works */
     margin: 0;
     padding: 0;
-    
     cursor: pointer;
-
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
+/* container for the visible item list (the "menu") */
+/* default desktop dropdown: positioned relative to the toggle, but constrained to viewport */
+.dropdown_list {
+    width: auto;
+    min-width: 10rem;
+    max-width: calc(100vw - 20px); /* never overflow horizontally */
+    list-style-type: none;
+    margin: 0;
+    padding: 0.25rem 0;
+    display: none;
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 0;
+    z-index: 9998;
+    border: 1px solid rgba(0,0,0,0.12);
+    border-radius: 8px;
+    background: rgba(255,255,255,0.98);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    box-sizing: border-box;
+    white-space: normal;        /* allow wrapping inside items */
+    overflow: visible;
+    padding-inline: 0.25rem;
 }
+
+/* When the dropdown has the 'open' state it shows */
+.dropdown.open .dropdown_list {
+    display: block;
+}
+
+/* Items inside dropdown: allow wrapping, large tap targets, avoid overflow */
+.list_item,
+.dropdown-item,
+.item1, .item2, .item3, .item4, .item5 {
+    border: 0;
+    height: auto;
+    width: 100%;
+    font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+    color: oklab(57.116% 0.20846 0.07618);
+    border-bottom: 0.2rem solid transparent;
+    z-index: 2;
+    padding: 0.6rem 0.9rem;
+    cursor: pointer;
+    text-align: left;
+    letter-spacing: clamp(0.1rem, 1.2vw, 0.4rem);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    white-space: normal;
+    word-break: break-word;     /* break long words/URLs to avoid overflow */
+    box-sizing: border-box;
+    background: transparent;
+}
+
+/* keep icons aligned but allow the text to wrap */
+.item1::before,
+.item2::before,
+.item3::before,
+.item4::before,
+.item5::before {
+    content: "";
+    display: inline-block;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 1.5rem;
+    height: 1.5rem;
+    flex: 0 0 auto;
+}
+
+/* Hover/focus states */
+.list_item:hover,
+.dropdown-item:hover,
+.item1:hover, .item2:hover, .item3:hover, .item4:hover, .item5:hover {
+    box-shadow: 0 0 30px 8px oklab(57.116% 0.20846 0.07618);
+    background-color: rgba(0,0,0,0.04);
+    z-index: 10001;
+    opacity: 1;
+}
+
+/* Right-aligned variant (useful when toggle is near the right edge) */
+.dropdown_list.align-right {
+    left: auto;
+    right: 0;
+}
+
+/* If the list is long, make it scrollable internally (add class .scrollable when needed) */
+.dropdown_list.scrollable {
+    max-height: calc(100vh - 120px);  /* leave top/bottom room */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Nested submenu basics */
+.dropdown-submenu { position: relative; }
+.dropdown-submenu > .dropdown_list {
+  top: 0;
+  left: 100%;
+  margin-left: 6px;
+  min-width: 12rem;
+  max-width: calc(100vw - 40px);
+}
+
+/* flip to left if not enough room to the right */
+.dropdown-submenu.open-to-left > .dropdown_list {
+  left: auto;
+  right: 100%;
+  margin-left: 0;
+  margin-right: 6px;
+}
+
+/* --------- End dropdown improvements --------- */
+
 
 .item1 {
     display: flex;
@@ -202,7 +271,6 @@ a {
     width: 100%;
     height: 100%;
     padding: 1em;
-    
 }
 
 
@@ -219,15 +287,6 @@ a {
     flex: 0 0 auto;
 }
 
-.item1:hover, .item2:hover, .item3:hover, .item4:hover, .item5:hover {
-    box-shadow: 0 0 30px 8px oklab(57.116% 0.20846 0.07618);
-    background-color: hsl(0, 0%, 100%);
-    position: relative;
-    color: 0 0 30px 8px oklab(57.116% 0.20846 0.07618);
-    z-index: 3;
-    opacity: 30%;
-}
-
 .item2 {
     display: flex;
     justify-content: center;
@@ -240,7 +299,6 @@ a {
     width: 100%;
     height: 100%;
     padding: 1em;
-    
 }
 .item2::before {
     content: "";
@@ -267,9 +325,7 @@ a {
     width: 100%;
     height: 100%;
     padding: 1em;
-    
 }
-
 
 .item3::before {
     content: "";
@@ -284,7 +340,6 @@ a {
 }
 
 
-
 .item4 {
     display: flex;
     justify-content: center;
@@ -297,7 +352,6 @@ a {
     width: 100%;
     height: 100%;
     padding: 1em;
-    
 }
 
 .item4::before {
@@ -325,7 +379,6 @@ a {
     width: 100%;
     height: 100%;
     padding: 1em;
-    
 }
 
 .item5::before {
@@ -341,40 +394,14 @@ a {
 }
 
 
-
-.dropdown_list {
-    width: fit-content;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 0;
-    border: 0;
-    cursor: pointer;
-}
-
-.dropdown.open .dropdown_list {
-    display: block;
-}
-
-
-
-
-
-
 .box-2 {
     grid-area: box-2;
-    
     
     width: auto;
 }
 
 .box-3 {
     grid-area: box-3;
-    
     
 }
 
@@ -392,7 +419,6 @@ a {
 
 .box_6 {
     grid-area: box-6;
-
 
 }
 
@@ -427,19 +453,10 @@ a {
         height: clamp(9rem, 18vw, 14rem);
     }
 
+    /* keep dropdown responsive; do NOT force narrow fixed widths */
     .dropdown_list {
-        width: 4rem;
-        height: auto;
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        z-index: 0;
-        border: 0;
-        cursor: pointer;
+        min-width: 8rem;
+        max-width: calc(100vw - 24px);
     }
 
     .item1, .item2, .item3, .item4, .item5 {
@@ -460,18 +477,8 @@ a {
 
 
      .dropdown_list {
-        width: 3rem;
-        height: auto;
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        z-index: 0;
-        border: 0;
-        cursor: pointer;
+        min-width: 7rem;
+        max-width: calc(100vw - 24px);
     }
 
     .item1, .item2, .item3, .item4, .item5 {
@@ -500,24 +507,31 @@ a {
         display: none;
     }
 
+    /* switch dropdown to fixed, full-width-ish modal so it cannot overlap page content */
     .dropdown_list {
-        width: 2rem;
-        height: auto;
-        list-style-type: none;
+        position: fixed;
+        left: 10px;
+        right: 10px;
+        top: 56px; /* room for the toggle/button — adjust if your header height differs */
         margin: 0;
-        padding: 0;
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        z-index: 0;
-        border: 0;
-        cursor: pointer;
+        max-width: calc(100vw - 20px);
+        border-radius: 10px;
+        padding: 0.5rem 0;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        z-index: 10000;
+        background: rgba(255,255,255,0.98);
+        overflow: hidden;
+    }
+
+    .dropdown_list.scrollable {
+        max-height: calc(100vh - 120px);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
     .item1, .item2, .item3, .item4, .item5 {
-        font-size: clamp(0.5rem, 1.5vw, 1rem);
-        padding: 0.5em;
+        font-size: clamp(0.9rem, 2.6vw, 1.1rem);
+        padding: 0.75rem 1rem;
         height: auto;
     }
 }
@@ -552,7 +566,18 @@ a {
         justify-items: center;
     }
 
+    /* ensure the fixed menu on small screens does not overlap by default */
+    .dropdown_list {
+        top: 56px;
+        left: 8px;
+        right: 8px;
+        max-width: calc(100vw - 16px);
+        border-radius: 10px;
+    }
 
+    .dropdown_list.scrollable {
+        max-height: calc(100vh - 110px);
+    }
 }
 
 @media (max-width: 425px) {
@@ -564,24 +589,10 @@ a {
         width: 2.25rem;
         height: 2.25rem;
     }
-    .dropdown_list {
-        width: 1.5rem;
-        height: auto;
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        z-index: 0;
-        border: 0;
-        cursor: pointer;
-    }
 
     .item1, .item2, .item3, .item4, .item5 {
-        font-size: clamp(0.5rem, 1.5vw, 1rem);
-        padding: 0.5em;
+        font-size: clamp(0.85rem, 2.5vw, 1rem);
+        padding: 0.6rem 0.8rem;
     }
 
     .box_con {
@@ -589,4 +600,3 @@ a {
         place-items: center;
     }
 }
-
