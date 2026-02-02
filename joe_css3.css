@@ -11,7 +11,10 @@ body {
     overflow: hidden;
 }
 
-
+a {
+    text-decoration: none;
+    color: inherit;
+}
 .bg-video {
   position: fixed;
   top: 0;
