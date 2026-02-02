@@ -426,6 +426,27 @@ a {
         width: clamp(9rem, 18vw, 14rem);
         height: clamp(9rem, 18vw, 14rem);
     }
+
+    .dropdown_list {
+        width: 4rem;
+        height: auto;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 0;
+        border: 0;
+        cursor: pointer;
+    }
+
+    .item1, .item2, .item3, .item4, .item5 {
+        font-size: clamp(1rem, 1.5vw, 1rem);
+        padding: 0.5em;
+        height: auto;
+    }
 }
 
 @media (max-width: 1024px) {
@@ -435,6 +456,28 @@ a {
 
     .con_link {
         display: none;
+    }
+
+
+     .dropdown_list {
+        width: 3rem;
+        height: auto;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 0;
+        border: 0;
+        cursor: pointer;
+    }
+
+    .item1, .item2, .item3, .item4, .item5 {
+        font-size: clamp(0.5rem, 1.5vw, 1rem);
+        padding: 0.5em;
+        height: auto;
     }
 }
 
@@ -455,6 +498,27 @@ a {
 
     .con_link {
         display: none;
+    }
+
+    .dropdown_list {
+        width: 2rem;
+        height: auto;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 0;
+        border: 0;
+        cursor: pointer;
+    }
+
+    .item1, .item2, .item3, .item4, .item5 {
+        font-size: clamp(0.5rem, 1.5vw, 1rem);
+        padding: 0.5em;
+        height: auto;
     }
 }
 
@@ -479,19 +543,50 @@ a {
     }
 
     .drop_active {
-        width: 2rem;
-        height: 2rem;
+        width: 3.25rem;
+        height: 3.25rem;
     }
 
     .con_link {
         grid-template-columns: 1fr;
         justify-items: center;
     }
+
+
 }
 
 @media (max-width: 425px) {
     .title_name {
         display: none;
+    }
+
+    .drop_active {
+        width: 2.25rem;
+        height: 2.25rem;
+    }
+    .dropdown_list {
+        width: 1.5rem;
+        height: auto;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 0;
+        border: 0;
+        cursor: pointer;
+    }
+
+    .item1, .item2, .item3, .item4, .item5 {
+        font-size: clamp(0.5rem, 1.5vw, 1rem);
+        padding: 0.5em;
+    }
+
+    .box_con {
+        width: 60vw;
+        place-items: center;
     }
 }
 
